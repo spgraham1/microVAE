@@ -118,12 +118,12 @@ lr = 1e-5
 model = VAE(layers_data=layers.copy(),input_dim=1422,latent_dim=latent).to(device) #need to move input dim to end of args but i'm too lazy rn
 #optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)  # Adam is an algorithm for stochastic optimization
 optimizer = torch.optim.Adam(model.parameters(),lr=lr)
-def train(model,optimizer, epochs, device,features):
+def train(model,optimizer, epochs, device,features,data): #data in the format of a dataLoader
 	model.train() # set model to training mode
 	for epoch in range(epochs):
 		overall_loss = 0
 		#for batch_idx, x in enumerate(train_loader):
-		for batch_idx, (norm_data, raw_data, batch_sf) in enumerate(train_loader):
+		for batch_idx, (norm_data, raw_data, batch_sf) in enumerate(data):
 			x_norm = norm_data.view(batch_size,features).to(device)
 			x_raw = raw_data.view(batch_size,features).to(device)
 			#batch_sf = batch_sf.view(batch_size,features).to(device)
@@ -141,8 +141,8 @@ def train(model,optimizer, epochs, device,features):
 	return overall_loss
 
 
-output = train(model, optimizer, epochs=20, device=device,features=raw_train_dataset.shape[1])
-test_output = model.reconstruct(raw_train_dataset)
+#output = train(model, optimizer, epochs=20, device=device,features=raw_train_dataset.shape[1],data=train_loader)
+#test_output = model.reconstruct(raw_train_dataset)
 
 #latent_mean, latent_logvar, mean, disp, pi = model(norm_train_dataset)
 

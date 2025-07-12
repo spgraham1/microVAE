@@ -44,15 +44,15 @@ def tune_hyperparameters(model,lr, optimizer, epochs, layers_data, latent_size, 
 	return overall_loss
 
 
-#layers_options = [[1000,700,400,100],[1000,500,300,100],[1000,800,600,400,200,100]]
-layers_options = [[1000,700,400,100]]
+layers_options = [[1000,700,400,100],[1000,500,300,100],[1000,800,600,400,200,100]]
+#layers_options = [[1000,700,400,100]]
 ###batch_size_options = [100,50,20]
-#lr_options = [1e-4,1e-5]
-lr_options = [1e-5]
-#epochs = [10,30]
-epochs = [50]
-#latent_sizes = [10,25,50]
-latent_sizes = [10]
+lr_options = [1e-4,1e-5]
+#lr_options = [1e-5]
+epochs = [10,30,50]
+#epochs = [50]
+latent_sizes = [10,25,50]
+#latent_sizes = [10]
 #results = []
 date = datetime.date.today().strftime("%Y-%m-%d")
 outFile = '/Users/graha880/Desktop/mbVAE_resources/training/tuning_hyperparms_' + date + '.csv'
