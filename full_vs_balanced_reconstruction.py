@@ -21,10 +21,8 @@ lr = 1e-5
 #subDatasetModel = VAE(layers_data=LAYERS.copy(),input_dim=1422,latent_dim=LATENT).to(device)
 #optimizer = torch.optim.Adam(fullDatasetModel.parameters(),lr=lr)
 
-datafiles = ["/Users/graha880/Desktop/mbVAE_resources/50_geographic_train_data.csv","/Users/graha880/Desktop/mbVAE_resources/100_geographic_train_data.csv","/Users/graha880/Desktop/mbVAE_resources/300_geographic_train_data.csv","/Users/graha880/Desktop/mbVAE_resources/600_geographic_train_data.csv", "/Users/graha880/Desktop/mbVAE_resources/subsampled_geographic_train_data.csv",'/Users/graha880/Desktop/mbVAE_resources/full_geographic_train_data.csv']
+datafiles = ["/Users/graha880/Desktop/mbVAE_resources/full_geographic_train_data.csv","/Users/graha880/Desktop/mbVAE_resources/subsampled_geographic_train_data.csv"]
 
-
-#datafiles = ['/Users/graha880/Desktop/mbVAE_resources/full_geographic_train_data.csv']
 
 #should later update the loading here to use the function in load_data
 for infile in datafiles:
@@ -75,21 +73,6 @@ for infile in datafiles:
 
 
 
-
-fullTensor = load_training_data('/Users/graha880/Desktop/mbVAE_resources/full_geographic_train_data.csv')
-
-
-fullDataLoader = DataLoader(dataset=fullTensor, batch_size=batch_size, shuffle=True,drop_last=True)
-subsetTensor = load_training_data('/Users/graha880/Desktop/mbVAE_resources/subsampled_geographic_train_data.csv')
-subsetLoader = DataLoader(dataset=subsetTensor, batch_size=batch_size, shuffle=True,drop_last=True)
-
-subsetLoss = train(subDatasetModel,optimizer,epochs=EPOCHS,device=device,features=FEATURES,data=subsetLoader)
-print('subset dataset loss:')
-print(subsetLoss)
-
-fullLoss = train(fullDatasetModel,optimizer,epochs=EPOCHS,device=device,features=FEATURES,data=fullDataLoader)
-print('full dataset loss:')
-print(fullLoss)
 
 
 
